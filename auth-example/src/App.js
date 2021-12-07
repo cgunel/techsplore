@@ -30,13 +30,11 @@ export default function App() {
                 <Route element={<Layout/>}>
                     <Route path="/" element={<PublicPage/>}/>
                     <Route path="/login" element={<LoginPage/>}/>
-                    <Route
-                        path="/protected"
-                        element={
-                            <RequireAuth>
-                                <ProtectedPage/>
-                            </RequireAuth>
-                        }
+                    <Route path="/protected" element={
+                        <RequireAuth>
+                            <ProtectedPage/>
+                        </RequireAuth>
+                    }
                     />
                 </Route>
             </Routes>
@@ -61,12 +59,6 @@ function Layout() {
             <Outlet/>
         </div>
     );
-}
-
-interface AuthContextType {
-    user: any;
-    signin: (user: string, callback: VoidFunction) => void;
-    signout: (callback: VoidFunction) => void;
 }
 
 let AuthContext = React.createContext(null);
